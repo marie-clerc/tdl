@@ -4,7 +4,6 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Connexion</title>
-    <!-- <link rel="stylesheet" href="style.css"> -->
 </head>
 <body>
     <h1>Connexion</h1>
@@ -13,7 +12,7 @@
     <br/>
     <br/>
     <form method="POST">
-        <input type="email" id="mail" placeholder="Addresse email" autofocus/><br/>
+        <input type="email" id="mail" placeholder="Adresse email" autofocus/><br/>
         <input type="password" id="password" placeholder="Mot de passe"/><br/>
         <input type="button" id="login" value="Connexion"/>
     </form>

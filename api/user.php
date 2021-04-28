@@ -40,14 +40,21 @@ class User{
                 $user['name'] = $this->name;
                 $user['prename'] = $this->prename;
                 $user['mail'] = $this->mail;
-                return(json_encode($user));
+                $_SESSION['user'] = $data;
+                // $result needed pour script
+                $result = true;
+                echo json_encode(array("success"=>$result));
             }
             else{
-                return(json_encode("Mot de passe incorrect"));
+                // $result needed pour script
+                $result = false;
+                echo json_encode(array("success"=>$result));
             }
         }
         else{
-            return(json_encode('Aucun utilisateur'));
+            // $result needed pour script
+            $result = false;
+            echo json_encode(array("success"=>$result));
         }
     }
 }

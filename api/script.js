@@ -2,29 +2,32 @@ $(document).ready(function(){
     console.log('App is ready');
 
     /**
-     * connexion, ça marche pas, on passe sur accueil sur faux email et faux mdp
+     * connexion, ça marche !
      */
     $('#login').click(function(){
         let mail = $('#mail').val();
         let password = $('#password').val();
         $.ajax({
             url: 'api/log.php',
-            type: 'POST',
+            method: 'POST',
             dataType: 'json',
             data: {
                 mail: mail,
                 password: password
             },
-            success: function(data){
-                console.table(data);
-                alert("vous etes connecté");
-                $(location).attr('href', 'todolist.php');
-            },
-            error: function(){
-                console.error('Erreur email ou mdp');
-                alert("Erreur mail ou mdp");
-                $('#mail').val('').focus();
-                $('#password').val('');
+            success: function (data) {
+                var success = data['success']; //défini dans user.php
+                if(success == true) {
+                    console.table(data);
+                    alert("vous etes connecté");
+                    $(location).attr('href', 'todolist.php');
+                }
+                else if(success == false){
+                    console.error('Erreur email ou mdp');
+                    alert("Erreur mail ou mdp");
+                    $('#mail').val('').focus();
+                    $('#password').val('');
+                }
             }
         })
     })
@@ -64,9 +67,8 @@ $(document).ready(function(){
             else{
                 console.error('Les mots de passes ne correspondent pas');
                 alert("Les mots de passes ne correspondent pas");
-                $('#password').val('');
+                $('#password').val('').focus();
                 $('#cpassword').val('');
-                $('#password').focus();
             }
         }
         else{
@@ -76,4 +78,6 @@ $(document).ready(function(){
             $('#prename').focus();
         }
     })
+
+
 })
