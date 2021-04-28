@@ -1,5 +1,5 @@
 <?php
-    require_once('User.php');
+    require_once('user.php');
     $user = new User();
 
     $nom = trim(htmlspecialchars($_POST['name']));

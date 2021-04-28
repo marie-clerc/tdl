@@ -1,3 +1,11 @@
+<?php
+// Starting session
+session_start();
+
+// Storing session data
+$_SESSION["firstname"] = "Peter";
+$_SESSION["lastname"] = "Parker";
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -10,7 +18,7 @@
     <a href="login.php">Se connecter</a>
     <a href="register.php">S'inscrire</a>
     <?php
-    var_dump($_SESSION['user']);
+    var_dump($_SESSION);
     ?>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

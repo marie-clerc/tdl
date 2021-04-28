@@ -2,7 +2,7 @@ $(document).ready(function(){
     console.log('App is ready');
 
     /**
-     * connexion, ça marche !
+     * connexion, ça marche ! pas touch
      */
     $('#login').click(function(){
         let mail = $('#mail').val();
@@ -19,6 +19,8 @@ $(document).ready(function(){
                 var success = data['success']; //défini dans user.php
                 if(success == true) {
                     console.table(data);
+                    sessionStorage.setItem("email", mail);
+                    console.table(sessionStorage);
                     alert("vous etes connecté");
                     $(location).attr('href', 'todolist.php');
                 }
@@ -34,7 +36,7 @@ $(document).ready(function(){
 
 
     /**
-     * register, ça marche !
+     * register, ça marche ! pas touch
      */
     $('#register').click(function(){
         if($('#prename').val() != '' && $('#name').val() != '' && $('#mail').val() != '' && $('#password').val() != '' && $('#cpassword').val() != ''){
@@ -80,4 +82,10 @@ $(document).ready(function(){
     })
 
 
+    /**
+     *
+     */
+    $('').click(function (){
+
+    })
 })
