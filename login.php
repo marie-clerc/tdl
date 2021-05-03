@@ -15,7 +15,7 @@ session_start();
     <a href="register.php">S'inscrire</a>
     <br/>
     <br/>
-    <form method="POST">
+    <form method="POST" action="todolist.php" id="formlogin">
         <input type="email" id="mail" placeholder="Adresse email" autofocus/><br/>
         <input type="password" id="password" placeholder="Mot de passe"/><br/>
         <input type="button" id="login" value="Connexion"/>

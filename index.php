@@ -1,10 +1,6 @@
 <?php
 // Starting session
 session_start();
-
-// Storing session data
-$_SESSION["firstname"] = "Peter";
-$_SESSION["lastname"] = "Parker";
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -15,8 +11,36 @@ $_SESSION["lastname"] = "Parker";
     <title>To do List</title>
 </head>
 <body>
-    <a href="login.php">Se connecter</a>
-    <a href="register.php">S'inscrire</a>
+
+    <h1>Bienvenue
+        <?php //si l'utilisateur est connecté
+        if (isset($_SESSION['user']['prenom'])) {
+            //alors affiche son login
+            echo  $_SESSION['user']['prenom'];
+        }
+        ?>
+    </h1>
+
+        <?php //si l'utilisateur est connecté
+        if (isset($_SESSION['user']['prenom']))
+            // echo les liens necessaire
+        {
+        ?>
+            <input type="submit" name="deconnexion" id="deco" value="Déconnexion">
+            <?php
+        }
+        // si l'utilisateur est deconnecté
+        else if (!isset($_SESSION['user']['login']))
+            // echo les liens necessaire
+        {
+        ?>
+            <a href="login.php">Se connecter</a>
+            <a href="register.php">S'inscrire</a>
+        <?php
+        }
+        ?>
+    </div>
+
     <?php
     var_dump($_SESSION);
     ?>

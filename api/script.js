@@ -16,11 +16,11 @@ $(document).ready(function(){
                 password: password
             },
             success: function (data) {
+                console.table(data);
                 var success = data['success']; //défini dans user.php
                 if(success == true) {
+                    $('#formlogin').submit();
                     console.table(data);
-                    sessionStorage.setItem("email", mail);
-                    console.table(sessionStorage);
                     alert("vous etes connecté");
                     $(location).attr('href', 'todolist.php');
                 }
@@ -83,9 +83,9 @@ $(document).ready(function(){
 
 
     /**
-     *
+     * Déconnecxion, ca marche pas touch !
      */
-    $('').click(function (){
-
+    $('#deco').click(function (){
+        $(location).attr('href', 'logout.php');
     })
 })

@@ -1,8 +1,8 @@
 <?php
 class User{
     private $id = "";
-    public $prename = "";
-    public $name = "";
+    public $prenom = "";
+    public $nom = "";
     public $mail = "";
 
     private function connectdb(){
@@ -33,13 +33,15 @@ class User{
                 $request->execute();
                 $data = $request->fetchAll();
                 $this->id = $data[0][0];
-                $this->name = $data[0][1];
-                $this->prename = $data[0][2];
+                $this->nom = $data[0][1];
+                $this->prenom = $data[0][2];
                 $this->mail = $data[0][3];
                 $user['id'] = $this->id;
-                $user['name'] = $this->name;
-                $user['prename'] = $this->prename;
+                $user['nom'] = $this->nom;
+                $user['prenom'] = $this->prenom;
                 $user['mail'] = $this->mail;
+                $_SESSION['user'] = $user;
+                //var_dump($_SESSION);
                 // $result needed pour script
                 $result = true;
                 echo json_encode(array("success"=>$result));
