@@ -1,6 +1,6 @@
 <?php
-    require_once('user.php');
-    $user = new User();
+    require_once('model.php');
+    $user = new Model();
 
     session_start();
 

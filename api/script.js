@@ -17,7 +17,7 @@ $(document).ready(function(){
             },
             success: function (data) {
                 console.table(data);
-                var success = data['success']; //défini dans user.php
+                var success = data['success']; //défini dans model.php
                 if(success == true) {
                     $('#formlogin').submit();
                     console.table(data);
@@ -88,4 +88,44 @@ $(document).ready(function(){
     $('#deco').click(function (){
         $(location).attr('href', 'logout.php');
     })
+
+
+    /*******************************************************/
+
+    /**
+     * Ajouté une tâche, ca marche pas
+     */
+    $('#addtache').click(function(){
+        if($('#userid').val() != '' && $('#description').val() != ''){
+            let id = $('#userid').val();
+            let description = $('#description').val();
+
+            console.log(id, description);
+
+            $.ajax({
+                url: 'api/addtache.php',
+                method: 'POST',
+                data: {
+                    id: id,
+                    description: description,
+                },
+                success: function(data){
+                    //alert("Tâche ajouté");
+                    console.table(data);
+                    console.log("tache ajouté");
+                },
+                error: function(data){
+                    console.log(data)
+                    alert("Erreur lors de l'ajout de tâche");
+                }
+            })
+        }
+        else{
+            console.clear();
+            console.error('Veuillez remplir tous les champs');
+            alert("Veuillez remplir tous les champs");
+            $('#description').focus();
+        }
+    })
+
 })

@@ -14,23 +14,25 @@ session_start();
 
     <h1>Bienvenue
         <?php //si l'utilisateur est connecté
-        if (isset($_SESSION['user']['prenom'])) {
+        if (isset($_SESSION['prenom'])) {
             //alors affiche son login
-            echo  $_SESSION['user']['prenom'];
+            echo  $_SESSION['prenom'];
         }
         ?>
     </h1>
 
         <?php //si l'utilisateur est connecté
-        if (isset($_SESSION['user']['prenom']))
+        if (isset($_SESSION['prenom']))
             // echo les liens necessaire
         {
         ?>
             <input type="submit" name="deconnexion" id="deco" value="Déconnexion">
+            <br>
+            <a href="todolist.php">To do list</a>
             <?php
         }
         // si l'utilisateur est deconnecté
-        else if (!isset($_SESSION['user']['login']))
+        else if (!isset($_SESSION['login']))
             // echo les liens necessaire
         {
         ?>
@@ -40,10 +42,6 @@ session_start();
         }
         ?>
     </div>
-
-    <?php
-    var_dump($_SESSION);
-    ?>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="api/script.js"></script>
