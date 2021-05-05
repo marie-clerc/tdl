@@ -68,9 +68,31 @@ class Model{
      * Coté Tâches
      */
 
+    /**
+     * Ajouter une tache par un user
+     * @param $id
+     * @param $description
+     * @param $date
+     */
     public function addtache($id, $description) {
         $db = $this->connectdb();
-        $request = $db->prepare("INSERT INTO tache (utilisateur_id, description) VALUES ('$id', '$description')");
+        $request = $db->prepare("INSERT INTO `tache`(`utilisateur_id`, `description`, `date`) VALUES ('$id', '$description', NOW())");
         $request->execute();
     }
+
+    /**
+     * Afficher les taches du user
+     */
+    public function displaytache($id) {
+        $db = $this->connectdb();
+        $request = $db->prepare("SELECT * FROM `tache` WHERE `utilisateur_id` = $id ORDER BY date ASC");
+        $request->execute();
+        return($request);
+    }
+
+
+
+
+
+
 }

@@ -93,15 +93,28 @@ $(document).ready(function(){
     /*******************************************************/
 
     /**
-     * Ajouté une tâche, ca marche pas
+     * Ajouté une tâche, ca marche, pas touch
      */
     $('#addtache').click(function(){
-        if($('#userid').val() != '' && $('#description').val() != ''){
-            let id = $('#userid').val();
+        if($('#id').val() != '' && $('#description').val() != ''){
+            let id = $('#id').val();
             let description = $('#description').val();
 
-            console.log(id, description);
 
+            //création de la date
+            var now = new Date() ;
+            var annee = now.getFullYear();
+            var mois    = ('0'+(now.getMonth()+1)).slice(-2);
+            var jour    = ('0'+now.getDate()).slice(-2);
+            var heure   = ('0'+now.getHours()).slice(-2);
+            var min  = ('0'+now.getMinutes()).slice(-2);
+            var seconde = ('0'+now.getSeconds()).slice(-2);
+            var date_complete = annee + '-' + mois + '-' + jour + ' ' + heure + ':' + min + ':' + seconde;
+
+            console.log(id, description, date_complete);
+
+            // je l'ajoute à la liste des taches d'abord et ensuite je l'envoi en bdd, pas trouvé autrement
+            $("#list").append("<p>" + description + ', le '+ date_complete + "</p>");
             $.ajax({
                 url: 'api/addtache.php',
                 method: 'POST',
@@ -109,13 +122,12 @@ $(document).ready(function(){
                     id: id,
                     description: description,
                 },
-                success: function(data){
-                    //alert("Tâche ajouté");
-                    console.table(data);
+                success: function(){
+                    $('#description').val('');
+                    alert("Tâche ajouté");
                     console.log("tache ajouté");
                 },
-                error: function(data){
-                    console.log(data)
+                error: function(){
                     alert("Erreur lors de l'ajout de tâche");
                 }
             })
@@ -127,5 +139,7 @@ $(document).ready(function(){
             $('#description').focus();
         }
     })
+
+
 
 })
