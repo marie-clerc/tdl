@@ -81,14 +81,30 @@ class Model{
     }
 
     /**
-     * Afficher les taches du user
+     * Affiche les taches du user
+     * @param $id
+     * @return false|PDOStatement
      */
     public function displaytache($id) {
         $db = $this->connectdb();
-        $request = $db->prepare("SELECT * FROM `tache` WHERE `utilisateur_id` = $id ORDER BY date ASC");
+        $request = $db->prepare("SELECT * FROM `tache` WHERE `finish` IS NULL AND `utilisateur_id` = $id");
         $request->execute();
         return($request);
     }
+
+    /**
+     * Affiche les taches terminées du user
+     * @param $id
+     * @return array
+     */
+    public function displaytachedone($id) {
+        $db = $this->connectdb();
+        $request = $db->prepare("SELECT * FROM `tache` WHERE `finish` IS NOT NULL AND `utilisateur_id` = $id");
+        $request->execute();
+        $data = $request->fetchAll();
+        return($data);
+    }
+
 
 
 

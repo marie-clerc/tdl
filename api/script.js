@@ -140,6 +140,18 @@ $(document).ready(function(){
         }
     })
 
+    /**
+     * Passé une tache terminé dans la liste done
+     */
+    $('#done').click(function(){
+        let id = $('#idtask').val();
+        console.log(id);
+
+
+
+    })
+
+
 
 
 })

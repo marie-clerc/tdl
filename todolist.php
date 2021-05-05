@@ -1,16 +1,11 @@
 <?php
 require_once('api/model.php');
 session_start();
-
-if(!isset($_SESSION['id']))
-{
-    header('Location: index.php') ;
-}
-
+if(!isset($_SESSION['id'])) { header('Location: index.php'); }
 $tache = new Model();
 $id = $_SESSION['id'];
 $alltasks = $tache->displaytache($id);
-
+$alldone = $tache->displaytachedone($id);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -28,15 +23,36 @@ $alltasks = $tache->displaytache($id);
     </form>
 
     <article id="list">
+        <h2>TO DO</h2>
     <?php
     foreach ($alltasks as $task)
     {
     ?>
-        <p><?= $task['description']?>, le  <?= $task['date']?></p>
+        <input type="hidden" id="idtask" value="<?= $task['id'] ?>">
+        <p><?= $task['description']?>, le  <?= $task['date']?> [<span href="" id="done">Terminer</span>]|<span href="" id="suppr">[Supprimer]</span></p>
     <?php
     }
     ?>
     </article>
+
+
+    <?php
+    if ($alldone>0) {
+    ?>
+        <article id="tache_termine">
+        <h2>DONE</h2>
+        <?php
+        foreach ($alldone as $done)
+        {
+        ?>
+            <p><?= $done['description']?>, le  <?= $done['date']?></p>
+        <?php
+        }
+        ?>
+    </article>
+    <?php
+    }
+    ?>
 
 
 
