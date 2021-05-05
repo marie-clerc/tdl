@@ -96,7 +96,7 @@ $(document).ready(function(){
      * Ajouté une tâche, ca marche, pas touch
      */
     $('#addtache').click(function(){
-        if($('#id').val() != '' && $('#description').val() != ''){
+        if($('#description').val() != ''){
             let id = $('#id').val();
             let description = $('#description').val();
 
@@ -104,10 +104,10 @@ $(document).ready(function(){
             //création de la date
             var now = new Date() ;
             var annee = now.getFullYear();
-            var mois    = ('0'+(now.getMonth()+1)).slice(-2);
-            var jour    = ('0'+now.getDate()).slice(-2);
-            var heure   = ('0'+now.getHours()).slice(-2);
-            var min  = ('0'+now.getMinutes()).slice(-2);
+            var mois = ('0'+(now.getMonth()+1)).slice(-2);
+            var jour = ('0'+now.getDate()).slice(-2);
+            var heure = ('0'+now.getHours()).slice(-2);
+            var min = ('0'+now.getMinutes()).slice(-2);
             var seconde = ('0'+now.getSeconds()).slice(-2);
             var date_complete = annee + '-' + mois + '-' + jour + ' ' + heure + ':' + min + ':' + seconde;
 
@@ -124,7 +124,7 @@ $(document).ready(function(){
                 },
                 success: function(){
                     $('#description').val('');
-                    alert("Tâche ajouté");
+                    //alert("Tâche ajouté");
                     console.log("tache ajouté");
                 },
                 error: function(){
@@ -141,14 +141,47 @@ $(document).ready(function(){
     })
 
     /**
-     * Passé une tache terminé dans la liste done
+     * Passer une tache terminé dans la liste done, en cours
      */
-    $('#done').click(function(){
+    $('.done').click(function(){
         let id = $('#idtask').val();
         console.log(id);
 
+        $.ajax({
+            url: 'api/updatetache.php',
+            method: 'POST',
+            data: {
+                id: id,
+            },
+            success: function(){
+                //enlever la ligne et la mettre dans "done".
+            },
+        })
 
+    })
 
+    /**
+     * Supprimer une tache, en cours
+     */
+    $('.suppr').click(function(){
+        let id = $('#idtask').val();
+        console.log(id);
+
+        $.ajax({
+            url: 'api/deletetache.php',
+            method: 'POST',
+            data: {
+                id: id,
+            },
+            success: function(){
+                console.log("tache supprimé");
+                // supprimer la ligne
+                id.innerHTML= "";
+            },
+            error: function(){
+                alert("Erreur lors de la suppression");
+            }
+        })
     })
 
 

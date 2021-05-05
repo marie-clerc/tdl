@@ -28,8 +28,10 @@ $alldone = $tache->displaytachedone($id);
     foreach ($alltasks as $task)
     {
     ?>
+        <div >
         <input type="hidden" id="idtask" value="<?= $task['id'] ?>">
-        <p><?= $task['description']?>, le  <?= $task['date']?> [<span href="" id="done">Terminer</span>]|<span href="" id="suppr">[Supprimer]</span></p>
+        <p><?= $task['description']?>, le  <?= $task['date']?> [<span class="done">Terminer</span>]|[<span class="suppr">Supprimer</span>]</p>
+        </div>
     <?php
     }
     ?>
@@ -45,7 +47,8 @@ $alldone = $tache->displaytachedone($id);
         foreach ($alldone as $done)
         {
         ?>
-            <p><?= $done['description']?>, le  <?= $done['date']?></p>
+            <input type="hidden" id="idtask" value="<?= $done['id'] ?>">
+            <p><?= $done['description']?>, le  <?= $done['date']?> <span class="suppr">[Supprimer]</span></p>
         <?php
         }
         ?>

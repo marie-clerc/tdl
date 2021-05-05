@@ -87,7 +87,7 @@ class Model{
      */
     public function displaytache($id) {
         $db = $this->connectdb();
-        $request = $db->prepare("SELECT * FROM `tache` WHERE `finish` IS NULL AND `utilisateur_id` = $id");
+        $request = $db->prepare("SELECT * FROM `tache` WHERE `finish` IS NULL AND `utilisateur_id` = $id ORDER BY `id` ASC");
         $request->execute();
         return($request);
     }
@@ -99,10 +99,22 @@ class Model{
      */
     public function displaytachedone($id) {
         $db = $this->connectdb();
-        $request = $db->prepare("SELECT * FROM `tache` WHERE `finish` IS NOT NULL AND `utilisateur_id` = $id");
+        $request = $db->prepare("SELECT * FROM `tache` WHERE `finish` IS NOT NULL AND `utilisateur_id` = $id ORDER BY `id` ASC");
         $request->execute();
         $data = $request->fetchAll();
         return($data);
+    }
+
+    public function updatetache($id) {
+        $db = $this->connectdb();
+        $request = $db->prepare("UPDATE tache SET `finish` = `description` WHERE id = $id");
+        $request->execute();
+    }
+
+    public function deletetache($id){
+        $db = $this->connectdb();
+        $request = $db->prepare("DELETE FROM `tache` WHERE `tache`.`id` = $id");
+        $request->execute();
     }
 
 
