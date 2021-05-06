@@ -145,12 +145,12 @@ $(document).ready(function(){
      * ????
      * je sais pas comment finir ce truc
      */
-    var desc = document.getElementById("description")
+    /**var desc = document.getElementById("description")
     desc.addEventListener("keyup", function(event) {
         if (event.keyCode === 13) {
             event.preventDefault();
             document.getElementById("addtache").click();
-        }});
+        }});*/
 
     /**
      * Passer une tache terminé dans la liste done, en cours
@@ -177,7 +177,7 @@ $(document).ready(function(){
      * Supprimer une tache, en cours
      */
     $('.suppr').click(function(){
-        let id = $(this).data('id');
+        let id = $(this).data('id'); // il a fallu mettre 'data-' devant id dans les span
         console.log(id);
 
         $.ajax({
@@ -187,6 +187,7 @@ $(document).ready(function(){
                 id: id,
             },
             success: function(){
+
             },
             error: function(){
                 alert("Erreur lors de la suppression");

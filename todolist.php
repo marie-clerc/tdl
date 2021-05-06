@@ -50,8 +50,10 @@ $alldone = $tache->displaytachedone($id);
         foreach ($alldone as $done)
         {
         ?>
-            <input type="hidden" id="idtask" value="<?= $done['id'] ?>">
-            <p><?= $done['description']?>, le  <?= $done['date']?> <span class="suppr">[Supprimer]</span></p>
+            <p>
+                <?= $done['description']?>, le  <?= $done['date']?>
+                [<span class="suppr" data-id="<?= $done['id'] ?>">Supprimer</span>]
+            </p>
         <?php
         }
         ?>
