@@ -114,7 +114,7 @@ $(document).ready(function(){
             console.log(id, description, date_complete);
 
             // je l'ajoute à la liste des taches d'abord et ensuite je l'envoi en bdd, pas trouvé autrement
-            $("#list").append("<p>" + description + ', le '+ date_complete + "</p>");
+            $("#list").append("<p>" + description + ', le '+ date_complete + " [<span class=\"done\">Terminer</span>]|[<span class=\"suppr\">Supprimer</span>]</p>");
             $.ajax({
                 url: 'api/addtache.php',
                 method: 'POST',
@@ -141,10 +141,22 @@ $(document).ready(function(){
     })
 
     /**
+     * Ajouté une tache en appuyant sur Entrez,
+     * ????
+     * je sais pas comment finir ce truc
+     */
+    var desc = document.getElementById("description")
+    desc.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("addtache").click();
+        }});
+
+    /**
      * Passer une tache terminé dans la liste done, en cours
      */
     $('.done').click(function(){
-        let id = $('#idtask').val();
+        let id = $(this).data('id'); // il a fallu mettre 'data-' devant id dans les span
         console.log(id);
 
         $.ajax({
@@ -154,7 +166,8 @@ $(document).ready(function(){
                 id: id,
             },
             success: function(){
-                //enlever la ligne et la mettre dans "done".
+                // enlever la ligne et la mettre dans "done".
+
             },
         })
 
@@ -164,7 +177,7 @@ $(document).ready(function(){
      * Supprimer une tache, en cours
      */
     $('.suppr').click(function(){
-        let id = $('#idtask').val();
+        let id = $(this).data('id');
         console.log(id);
 
         $.ajax({
@@ -174,9 +187,6 @@ $(document).ready(function(){
                 id: id,
             },
             success: function(){
-                console.log("tache supprimé");
-                // supprimer la ligne
-                id.innerHTML= "";
             },
             error: function(){
                 alert("Erreur lors de la suppression");
