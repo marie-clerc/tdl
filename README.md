@@ -27,4 +27,4 @@ todolist.php:
   
 
 -------------------------
-connexion js : user.php, log.php, reg.php, script;js = 2ere function
+connexion js : user.php, log.php, reg.php, script;js (jusqu'à 3eme fonction)
