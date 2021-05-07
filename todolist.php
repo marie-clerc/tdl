@@ -13,6 +13,7 @@ $alldone = $tache->displaytachedone($id);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Votre to do list</title>
+    <link href="style/todo.css" rel="stylesheet">
 </head>
 <body>
     <a href="index.php">Accueil</a>
@@ -29,10 +30,13 @@ $alldone = $tache->displaytachedone($id);
     {
     ?>
         <!--<input type="hidden" id="idtask" value="<?= $task['id'] ?>">-->
-        <p><?= $task['description']?>, le  <?= $task['date']?>
-            [<span class="done" data-id="<?= $task['id'] ?>">Terminer</span>]
-            |
-            [<span class="suppr" data-id="<?= $task['id'] ?>">Supprimer</span>]
+        <p class="tache"><?= $task['description']?>
+            <section class="date">
+                le  <?= $task['date']?>
+                [<span class="done" data-id="<?= $task['id'] ?>">&#10004;</span>]
+                |
+                [<span class="suppr" data-id="<?= $task['id'] ?>">&#10006;</span>]
+            </section>
         </p>
 
     <?php
@@ -47,9 +51,11 @@ $alldone = $tache->displaytachedone($id);
         foreach ($alldone as $done)
         {
         ?>
-            <p>
-                <?= $done['description']?>, le  <?= $done['date']?>
-                [<span class="suppr" data-id="<?= $done['id'] ?>">Supprimer</span>]
+            <p class="tache"><?= $done['description']?>
+            <section class="date">
+                le  <?= $done['date']?>
+                    [<span class="suppr" data-id="<?= $done['id'] ?>">&#10006;</span>]
+                </section>
             </p>
         <?php
         }

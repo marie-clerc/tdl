@@ -1,0 +1,45 @@
+*, body, html, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+form {
+    margin: auto;
+    width: fit-content;
+}
+
+#list, #tache_termine {
+    width: 260px;
+    padding: 10px;
+    margin: auto;
+    margin-top: 30px;
+    background-color: #C3E5F4;
+    box-shadow: 2px 4px 6px #444;
+    transform: rotate(2deg);
+    border-bottom-right-radius: 60px 10px;
+}
+#list h2, #tache_termine h2, #list .tache, #tache_termine .tache, #list .date, #tache_termine .date {
+    transform: rotate(-2deg);
+}
+
+.done:hover {
+    color: green;
+    cursor: pointer;
+}
+
+.suppr:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.tache {
+    margin: 5px;
+    font-size: large;
+}
+
+.date {
+    color: rgba(76, 91, 92, 0.54);
+    font-size: small;
+    padding-left: 5px;
+}

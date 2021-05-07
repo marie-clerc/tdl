@@ -114,7 +114,16 @@ $(document).ready(function(){
             console.log(id, description, date_complete);
 
             // je l'ajoute à la liste des taches d'abord et ensuite je l'envoi en bdd, pas trouvé autrement
-            $("#list").append("<p>" + description + ', le '+ date_complete + " [<span class=\"done\">Terminer</span>]|[<span class=\"suppr\">Supprimer</span>]</p>");
+            $("#list").append("<p class='tache'>" +
+                description
+                + "<section class='date'>le  " +
+                date_complete
+                + " [<span class=\"done\" data-id='" +
+                id
+                + "'>&#10004;</span>] | [<span class=\"suppr\" data-id='" +
+                id
+                + "'>&#10006;</span>]</p>");
+
             $.ajax({
                 url: 'api/addtache.php',
                 method: 'POST',
