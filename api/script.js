@@ -166,11 +166,23 @@ $(document).ready(function(){
                 id: id,
             },
             success: function(){
-                // enlever la ligne et la mettre dans "done".
+                /**
+                 * enlever la ligne, ça marche pas
+                 */
+                 /**
+                $("p span").click(deleteThisRow);
+
+                function deleteThisRow() {
+                    $(this).closest('p').fadeOut(400, function() {
+                        $(this).remove();
+                    });
+                }*/
+
+                // et la mettre dans "done".
+                //$("#tache_termine").append(x);
 
             },
         })
-
     })
 
     /**
@@ -187,6 +199,8 @@ $(document).ready(function(){
                 id: id,
             },
             success: function(){
+                //supprimer la ligne
+
 
             },
             error: function(){

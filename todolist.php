@@ -41,10 +41,7 @@ $alldone = $tache->displaytachedone($id);
     </article>
 
 
-    <?php
-    if ($alldone>0) {
-    ?>
-        <article id="tache_termine">
+    <article id="tache_termine">
         <h2>DONE</h2>
         <?php
         foreach ($alldone as $done)
@@ -58,10 +55,6 @@ $alldone = $tache->displaytachedone($id);
         }
         ?>
     </article>
-    <?php
-    }
-    ?>
-
 
 
 
