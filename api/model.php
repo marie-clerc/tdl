@@ -107,7 +107,7 @@ class Model{
 
     public function updatetache($id) {
         $db = $this->connectdb();
-        $request = $db->prepare("UPDATE tache SET `finish` = `description` WHERE id = $id");
+        $request = $db->prepare("UPDATE tache SET `finish` = NOW() WHERE id = $id");
         $request->execute();
     }
 

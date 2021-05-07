@@ -53,7 +53,7 @@ $alldone = $tache->displaytachedone($id);
         ?>
             <p class="tache"><?= $done['description']?>
             <section class="date">
-                le  <?= $done['date']?>
+                le  <?= $done['finish']?>
                     [<span class="suppr" data-id="<?= $done['id'] ?>">&#10006;</span>]
                 </section>
             </p>
